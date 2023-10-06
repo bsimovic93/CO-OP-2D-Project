@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1bah78giuk3h"]
+
+[ext_resource type="Script" path="res://scenes/multiplayer_test.gd" id="1_wdv74"]
+[ext_resource type="PackedScene" uid="uid://3tomt6dwwlfx" path="res://scenes/player.tscn" id="2_x32ve"]
+
+[node name="MultiplayerTest" type="Node2D"]
+position = Vector2(419, 227)
+script = ExtResource("1_wdv74")
+player_scene = ExtResource("2_x32ve")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 169.0
+offset_bottom = 128.0
+
+[node name="Create" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Create"
+
+[node name="Join" type="Button" parent="Control"]
+layout_mode = 0
+offset_top = 36.0
+offset_right = 8.0
+offset_bottom = 44.0
+text = "Join"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="Control/Create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="Control/Join" to="." method="_on_join_pressed"]

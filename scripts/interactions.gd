@@ -1,5 +1,6 @@
 extends Node
 
+#this may have to be an array of objects cuz of multiplayer
 @export var currently_interacting_object: Node2D;
 @export var can_move: bool = true;
 signal  interaction_happened(value: String);
