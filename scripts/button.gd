@@ -1,5 +1,5 @@
 extends Node2D
-var is_pushed = false;
+@export var is_pushed = false;
 
 
 # Called when the node enters the scene tree for the first time.

@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://buu4gbx06eppv"]
+[gd_scene load_steps=5 format=3 uid="uid://buu4gbx06eppv"]
 
 [ext_resource type="Texture2D" uid="uid://b8ujjqoqoiber" path="res://sprites/Sprite-Button-Pressed.png" id="1_5sbe2"]
 [ext_resource type="Script" path="res://scripts/button.gd" id="1_s83u3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyge1"]
 size = Vector2(32, 32)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8r736"]
+properties/0/path = NodePath(".:is_pushed")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
 
 [node name="Button" type="Node2D"]
 script = ExtResource("1_s83u3")
@@ -17,6 +23,9 @@ texture = ExtResource("1_5sbe2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_xyge1")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_8r736")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered_button"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited_button"]

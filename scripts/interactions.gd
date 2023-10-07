@@ -3,7 +3,7 @@ extends Node
 #this may have to be an array of objects cuz of multiplayer
 @export var currently_interacting_object: Node2D;
 @export var can_move: bool = true;
-signal  interaction_happened(value: String);
+signal  interaction_happened(value);
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,8 +24,8 @@ func _process(delta):
 					interaction_happened.emit({
 						"action": 'lever-pull',
 						"value": currently_interacting_object.is_active,
-						"object": currently_interacting_object
 					});
+					print('interaction called')
 			'Button':
 				if Input.is_action_pressed("interact"):
 					can_move = false;
@@ -34,7 +34,6 @@ func _process(delta):
 					currently_interacting_object.is_pushed = false;
 				interaction_happened.emit({
 					"action": 'button_push',
-					"value": currently_interacting_object.is_pushed,
-					"object": currently_interacting_object
+					"value": currently_interacting_object.is_pushed
 				});
 	pass

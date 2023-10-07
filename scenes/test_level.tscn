@@ -72,15 +72,13 @@ animations = [{
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_8qp7s")
+player_scene = ExtResource("2_e1wdq")
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_gftc8")
 format = 2
 layer_0/tile_data = PackedInt32Array(524293, 65536, 0, 524294, 131072, 0, 524290, 0, 0, 589826, 0, 2, 524291, 65536, 0, 589827, 65536, 2, 524292, 65536, 0, 589828, 65536, 2, 589829, 65536, 2, 589830, 131072, 2, 327690, 0, 0, 327691, 65536, 0, 327692, 65536, 0, 327693, 131072, 0, 393226, 0, 2, 393229, 131072, 2, 393227, 65536, 2, 393228, 65536, 2, 131082, 0, 2, 131083, 131072, 2, 131085, 0, 2, 131086, 131072, 2, 65546, 0, 0, 65547, 131072, 0, 65549, 0, 0, 65550, 131072, 0)
-
-[node name="Player" parent="." instance=ExtResource("2_e1wdq")]
-position = Vector2(166, 232)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -103,3 +101,11 @@ position = Vector2(200, 25)
 sprite_frames = SubResource("SpriteFrames_63jca")
 autoplay = "default"
 frame_progress = 0.851712
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
+position = Vector2(168, 232)
+
+[node name="1" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
+position = Vector2(408, 136)

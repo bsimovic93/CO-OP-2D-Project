@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdc2lgjopapjf"]
+[gd_scene load_steps=6 format=3 uid="uid://bdc2lgjopapjf"]
 
 [ext_resource type="Texture2D" uid="uid://qhco2or4igq6" path="res://sprites/Sprite-Plat.png" id="1_4pjiw"]
 
@@ -26,6 +26,12 @@ _data = {
 "move_up": SubResource("Animation_bb0s1")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xujna"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
 [node name="MovingPlatform" type="AnimatableBody2D"]
 position = Vector2(265, 265)
 
@@ -40,3 +46,6 @@ shape = SubResource("RectangleShape2D_b45mj")
 libraries = {
 "": SubResource("AnimationLibrary_6se5u")
 }
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_xujna")

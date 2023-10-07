@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw8cj6spbovjj"]
+[gd_scene load_steps=8 format=3 uid="uid://cw8cj6spbovjj"]
 
 [ext_resource type="Script" path="res://scripts/lever.gd" id="1_tsy5a"]
 [ext_resource type="Texture2D" uid="uid://cymn5qb0832th" path="res://sprites/Lever/Sprite-0001.png" id="2_6x1m8"]
@@ -25,6 +25,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8sw2m"]
 size = Vector2(11, 10.3333)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ofcce"]
+properties/0/path = NodePath("AnimatedSprite2D:animation")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:is_active")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+
 [node name="Lever" type="Node2D"]
 script = ExtResource("1_tsy5a")
 
@@ -39,6 +49,9 @@ animation = &"pull_lever"
 position = Vector2(-0.5, 0.5)
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_8sw2m")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ofcce")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
