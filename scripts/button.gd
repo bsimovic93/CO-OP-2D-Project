@@ -1,5 +1,6 @@
 extends Node2D
 @export var is_pushed = false;
+@export var lightnig_gate: Node2D;
 
 
 # Called when the node enters the scene tree for the first time.
@@ -9,6 +10,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	get_node('AnimatedSprite2D').set_frame(int(is_pushed))
+	if is_pushed == true:
+		lightnig_gate.hide()
+	else:
+		lightnig_gate.show()
+	
 	pass
 
 

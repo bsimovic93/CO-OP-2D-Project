@@ -30,21 +30,12 @@ func _process(delta):
 func do_interaction(interaction):
 	
 	if interaction.action == 'lever-pull':
-		
-		if interaction.value == true:
-			InteractionManager.currently_interacting_object.moving_platform.get_node("AnimationPlayer").play("move_up")
-			InteractionManager.currently_interacting_object.get_node("AnimatedSprite2D").play("pull_lever");
-		else: 
-			InteractionManager.currently_interacting_object.moving_platform.get_node("AnimationPlayer").play_backwards("move_up");
-			InteractionManager.currently_interacting_object.get_node("AnimatedSprite2D").play_backwards("pull_lever");
-	if interaction.action == 'button_push':
-		if InteractionManager.currently_interacting_object != null:
-			if interaction.value == true:
-				InteractionManager.currently_interacting_object.get_node("Sprite2D").set_texture(pressed);
-				get_node('Shocker/AnimatedSprite2D').hide();
-			else:
-				InteractionManager.currently_interacting_object.get_node("Sprite2D").set_texture(unpressed);
-				get_node('Shocker/AnimatedSprite2D').show();
+		InteractionManager.currently_interacting_object.is_active = !InteractionManager.currently_interacting_object.is_active
+		InteractionManager.currently_interacting_object.interact()
+	if interaction.action == 'button-push':
+		InteractionManager.currently_interacting_object.is_pushed = true;
+	if interaction.action == 'button-relese':
+		InteractionManager.currently_interacting_object.is_pushed = false;
 
 func _handle_interaction(interaction):
 	# check for iteraction action, if we have multiple diferent types of actions

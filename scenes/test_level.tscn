@@ -90,8 +90,9 @@ zoom = Vector2(1.5, 1.5)
 position = Vector2(102, 240)
 moving_platform = NodePath("../MovingPlatform")
 
-[node name="Button" parent="." instance=ExtResource("6_srke2")]
+[node name="Button" parent="." node_paths=PackedStringArray("lightnig_gate") instance=ExtResource("6_srke2")]
 position = Vector2(357, 144)
+lightnig_gate = NodePath("../Shocker")
 
 [node name="Shocker" type="Node2D" parent="."]
 scale = Vector2(2, 2)

@@ -20,20 +20,18 @@ func _process(delta):
 			'Lever':
 				if Input.is_action_just_pressed("interact"):
 					can_move = false;
-					currently_interacting_object.is_active = !currently_interacting_object.is_active;
 					interaction_happened.emit({
-						"action": 'lever-pull',
-						"value": currently_interacting_object.is_active,
+						"action": 'lever-pull'
 					});
 					print('interaction called')
 			'Button':
-				if Input.is_action_pressed("interact"):
+				if Input.is_action_just_pressed("interact"):
 					can_move = false;
-					currently_interacting_object.is_pushed = true;
-				else: 
-					currently_interacting_object.is_pushed = false;
-				interaction_happened.emit({
-					"action": 'button_push',
-					"value": currently_interacting_object.is_pushed
-				});
+					interaction_happened.emit({
+						"action": 'button-push'
+					});
+				if Input.is_action_just_released("interact"):
+					interaction_happened.emit({
+						"action": 'button-relese'
+					});
 	pass

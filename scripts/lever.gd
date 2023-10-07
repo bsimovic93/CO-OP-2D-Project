@@ -15,6 +15,15 @@ func _ready():
 func _process(delta):
 	pass
 
+func interact():
+	if is_active == true:
+		moving_platform.get_node("AnimationPlayer").play("move_up")
+		get_node("AnimatedSprite2D").play("pull_lever");
+	else: 
+		moving_platform.get_node("AnimationPlayer").play_backwards("move_up");
+		get_node("AnimatedSprite2D").play_backwards("pull_lever");
+	pass
+
 func _on_area_2d_body_entered(body):
 	if body is CharacterBody2D:
 		InteractionManager.currently_interacting_object = get_node(".");
