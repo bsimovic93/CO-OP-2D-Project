@@ -58,7 +58,6 @@ func _on_host_pressed():
 		print('Cannot host')
 		return
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
-	
 	multiplayer.set_multiplayer_peer(peer)
 	send_player_info('Name', multiplayer.get_unique_id())
 	pass # Replace with function body.
@@ -75,3 +74,4 @@ func _on_join_pressed():
 func _on_start_pressed():
 	start_level.rpc()
 	pass # Replace with function body.
+

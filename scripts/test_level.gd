@@ -1,8 +1,5 @@
 extends Node2D
 
-var pressed = load("res://sprites/Sprite-Button-Pressed-Alt.png") 
-var unpressed = load("res://sprites/Sprite-Button-Pressed.png")
-
 @export var player_scene: PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +19,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if InteractionManager.currently_interacting_object:
+		$DebugText.text = str(InteractionManager.currently_interacting_object.name)
+	else:
+		$DebugText.text = ''
 	if Input.is_action_pressed("reset"):
 		get_tree().change_scene_to_file("res://scenes/test_level.tscn");
 	pass
@@ -38,11 +39,6 @@ func do_interaction(interaction):
 		InteractionManager.currently_interacting_object.is_pushed = false;
 
 func _handle_interaction(interaction):
-	# check for iteraction action, if we have multiple diferent types of actions
-	# strong binded interactions for now 
-	# LEVER -> PLATFORM
-	# BUTTON -> DANGER BEAM
-
 	do_interaction.rpc(interaction)
 	pass
 
