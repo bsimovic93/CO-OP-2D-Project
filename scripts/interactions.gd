@@ -41,7 +41,6 @@ func check_interaction(interaction):
 				"action": interaction.action,
 				"id": interaction.id
 			});
-			print('interaction called')
 		'Button':
 			#can_move = false;
 			if interaction.action == 'button-push':
@@ -57,7 +56,6 @@ func check_interaction(interaction):
 func do_interaction(interaction):
 	var item = interacting_items.get(interaction.id);
 	if item != null:
-		print(interacting_items.keys())
 		if interaction.action == 'lever-pull':
 			item.is_active = !item.is_active
 			item.interact()

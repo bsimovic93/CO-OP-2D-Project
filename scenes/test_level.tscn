@@ -74,7 +74,7 @@ animations = [{
 script = ExtResource("1_8qp7s")
 player_scene = ExtResource("2_e1wdq")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=["TilemapGroup"]]
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_gftc8")
 format = 2
@@ -87,12 +87,12 @@ zoom = Vector2(1.5, 1.5)
 [node name="MovingPlatform" parent="." instance=ExtResource("5_k176b")]
 
 [node name="Lever" parent="." node_paths=PackedStringArray("moving_platform") instance=ExtResource("3_vb48e")]
-position = Vector2(102, 238)
+position = Vector2(105, 240)
 moving_platform = NodePath("../MovingPlatform")
 lever_id = 420
 
 [node name="Button" parent="." node_paths=PackedStringArray("lightnig_gate") instance=ExtResource("6_srke2")]
-position = Vector2(360, 143)
+position = Vector2(357, 144)
 button_id = 69
 lightnig_gate = NodePath("../Shocker")
 

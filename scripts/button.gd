@@ -12,13 +12,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-
-	
-	if get_node("Area2D").get_overlapping_bodies().size() > 0:
+	var bodies = get_node("Area2D").get_overlapping_bodies().filter(func(body): return !body.is_in_group('TilemapGroup'))
+	if bodies.size() > 0:
 		# add this to the stuff
 		InteractionManager.add_interacting_item(button_id, get_node('.'))
-		if check_overlap_authority(get_node("Area2D").get_overlapping_bodies()):
+		if check_overlap_authority(bodies):
 			if Input.is_action_just_pressed("interact") and is_pushed != true:
 				InteractionManager.check_interaction({
 					'action': 'button-push',

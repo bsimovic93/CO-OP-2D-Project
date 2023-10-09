@@ -14,10 +14,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if get_node("Area2D").get_overlapping_bodies().size() > 0:
+	var bodies = get_node("Area2D").get_overlapping_bodies().filter(func(body): return !body.is_in_group('TilemapGroup'))
+	if bodies.size() > 0:
 		# add this to the stuff
 		InteractionManager.add_interacting_item(lever_id, get_node('.'))
-		if check_overlap_authority(get_node("Area2D").get_overlapping_bodies()):
+		if check_overlap_authority(bodies):
 			if Input.is_action_just_pressed("interact"):
 				InteractionManager.check_interaction({
 					'action': 'lever-pull',
@@ -33,6 +34,8 @@ func check_overlap_authority(bodies: Array[Node2D]):
 		if body.get_node('MultiplayerSynchronizer').get_multiplayer_authority() == multiplayer.get_unique_id():
 			can_interact = true
 	return can_interact
+
+	
 
 func interact():
 	if is_active == true:
