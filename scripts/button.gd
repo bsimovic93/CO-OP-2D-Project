@@ -1,5 +1,7 @@
 extends Node2D
+class_name PushButton
 @export var is_pushed = false;
+@export var button_id = 0
 @export var lightnig_gate: Node2D;
 
 
@@ -10,6 +12,27 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+
+	
+	if get_node("Area2D").get_overlapping_bodies().size() > 0:
+		# add this to the stuff
+		InteractionManager.add_interacting_item(button_id, get_node('.'))
+		if check_overlap_authority(get_node("Area2D").get_overlapping_bodies()):
+			if Input.is_action_just_pressed("interact") and is_pushed != true:
+				InteractionManager.check_interaction({
+					'action': 'button-push',
+					'id': button_id
+				})
+			if Input.is_action_just_released("interact"):
+				InteractionManager.check_interaction({
+					'action': 'button-relese',
+					'id': button_id
+				})
+	else:
+		InteractionManager.remove_interacting_item(button_id)
+	pass
+	
 	get_node('AnimatedSprite2D').set_frame(int(is_pushed))
 	if is_pushed == true:
 		lightnig_gate.hide()
@@ -19,15 +42,9 @@ func _process(delta):
 	pass
 
 
-func _on_area_2d_body_entered_button(body):
-	print('e?')
-	if body is CharacterBody2D:
-		InteractionManager.currently_interacting_object = get_node(".")
-		pass # Replace with function body.
-
-
-func _on_area_2d_body_exited_button(body):
-	print('a?')
-	if body is CharacterBody2D:
-		InteractionManager.currently_interacting_object = null;
-		pass # Replace with function body
+func check_overlap_authority(bodies: Array[Node2D]):
+	var can_interact = false;
+	for body in bodies:
+		if body.get_node('MultiplayerSynchronizer').get_multiplayer_authority() == multiplayer.get_unique_id():
+			can_interact = true
+	return can_interact

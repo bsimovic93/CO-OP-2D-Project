@@ -3,6 +3,7 @@ class_name Lever
 var current_interacting_body = null;
 
 @export var moving_platform: Node2D;
+@export var lever_id = 0;
 
 @export var is_active = false;
 
@@ -13,7 +14,25 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if get_node("Area2D").get_overlapping_bodies().size() > 0:
+		# add this to the stuff
+		InteractionManager.add_interacting_item(lever_id, get_node('.'))
+		if check_overlap_authority(get_node("Area2D").get_overlapping_bodies()):
+			if Input.is_action_just_pressed("interact"):
+				InteractionManager.check_interaction({
+					'action': 'lever-pull',
+					'id': lever_id
+				})
+	else:
+		InteractionManager.remove_interacting_item(lever_id)
 	pass
+
+func check_overlap_authority(bodies: Array[Node2D]):
+	var can_interact = false;
+	for body in bodies:
+		if body.get_node('MultiplayerSynchronizer').get_multiplayer_authority() == multiplayer.get_unique_id():
+			can_interact = true
+	return can_interact
 
 func interact():
 	if is_active == true:
@@ -24,12 +43,3 @@ func interact():
 		get_node("AnimatedSprite2D").play_backwards("pull_lever");
 	pass
 
-func _on_area_2d_body_entered(body):
-	if body is CharacterBody2D:
-		InteractionManager.currently_interacting_object = get_node(".");
-		pass # Replace with function body.
-
-func _on_area_2d_body_exited(body):
-	if body is CharacterBody2D:
-		InteractionManager.currently_interacting_object = null;
-		pass # Replace with function body

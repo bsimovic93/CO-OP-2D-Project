@@ -87,11 +87,13 @@ zoom = Vector2(1.5, 1.5)
 [node name="MovingPlatform" parent="." instance=ExtResource("5_k176b")]
 
 [node name="Lever" parent="." node_paths=PackedStringArray("moving_platform") instance=ExtResource("3_vb48e")]
-position = Vector2(102, 240)
+position = Vector2(102, 238)
 moving_platform = NodePath("../MovingPlatform")
+lever_id = 420
 
 [node name="Button" parent="." node_paths=PackedStringArray("lightnig_gate") instance=ExtResource("6_srke2")]
-position = Vector2(357, 144)
+position = Vector2(360, 143)
+button_id = 69
 lightnig_gate = NodePath("../Shocker")
 
 [node name="Shocker" type="Node2D" parent="."]
@@ -111,7 +113,7 @@ position = Vector2(168, 232)
 [node name="1" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
 position = Vector2(408, 136)
 
-[node name="DebugText" type="Label" parent="."]
-offset_left = 376.0
-offset_right = 416.0
+[node name="Interaction1" type="Label" parent="."]
+offset_right = 40.0
 offset_bottom = 23.0
+text = "this is interaction 1"

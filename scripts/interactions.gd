@@ -1,37 +1,71 @@
 extends Node
 
-#this may have to be an array of objects cuz of multiplayer
-@export var currently_interacting_object: Node2D;
+@export var interacting_items = {};
+
 @export var can_move: bool = true;
 signal  interaction_happened(value);
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	interaction_happened.connect(handle_interaction)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# Here we can lisen when current inter object is not null and 
-	# listen for some input to dispatch some events
-	if currently_interacting_object != null:
-		can_move = true;
-		match currently_interacting_object.name:
-			'Lever':
-				if Input.is_action_just_pressed("interact"):
-					can_move = false;
-					interaction_happened.emit({
-						"action": 'lever-pull'
-					});
-					print('interaction called')
-			'Button':
-				if Input.is_action_just_pressed("interact"):
-					can_move = false;
-					interaction_happened.emit({
-						"action": 'button-push'
-					});
-				if Input.is_action_just_released("interact"):
-					interaction_happened.emit({
-						"action": 'button-relese'
-					});
 	pass
+	
+func add_interacting_item(id, item):
+	if interacting_items.has(id):
+		return
+	else:
+		interacting_items[id] = item;
+
+func remove_interacting_item(id):
+	if !interacting_items.has(id):
+		return
+	else:
+		interacting_items.erase(id)
+		
+
+
+func check_interaction(interaction):
+	
+	var current_interaction = interacting_items.get(interaction.id);
+
+	can_move = true;
+	match current_interaction.name:
+		'Lever':
+			interaction_happened.emit({
+				"action": interaction.action,
+				"id": interaction.id
+			});
+			print('interaction called')
+		'Button':
+			#can_move = false;
+			if interaction.action == 'button-push':
+				can_move = false
+			if interaction.action == 'button-relese':
+				can_move = true
+			interaction_happened.emit({
+				"action": interaction.action,
+				"id": interaction.id
+			});
+
+@rpc("any_peer","call_local")
+func do_interaction(interaction):
+	var item = interacting_items.get(interaction.id);
+	if item != null:
+		print(interacting_items.keys())
+		if interaction.action == 'lever-pull':
+			item.is_active = !item.is_active
+			item.interact()
+		if interaction.action == 'button-push':
+			item.is_pushed = true;
+		if interaction.action == 'button-relese':
+			item.is_pushed = false;
+		
+		
+func handle_interaction(interaction):
+	do_interaction.rpc(interaction)
