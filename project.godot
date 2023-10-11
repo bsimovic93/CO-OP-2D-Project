@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 InteractionManager="*res://scripts/interactions.gd"
-GameManager="*res://scripts/player_manager.gd"
+GameManager="*res://scripts/game_manager.gd"
 
 [display]
 

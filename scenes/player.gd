@@ -4,6 +4,8 @@ extends CharacterBody2D
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 
+signal hit(player_id);
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -33,6 +35,17 @@ func _physics_process(delta):
 
 		move_and_slide()
 
+func die():
+	hit.emit(multiplayer.get_unique_id())
+
+
 func _enter_tree():
 	print('multiplayer started')
 	set_multiplayer_authority(name.to_int());
+
+
+func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	if area.get_node('../').is_in_group('Shocker'):
+			print('ded')
+			die()
+	pass # Replace with function body.
