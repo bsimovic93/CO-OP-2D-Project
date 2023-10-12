@@ -28,7 +28,7 @@ func _process(delta):
 		InteractionManager.remove_interacting_item(lever_id)
 	pass
 
-func check_overlap_authority(bodies: Array[Node2D]):
+func check_overlap_authority(bodies: Array[Node2D]) -> bool:
 	var can_interact = false;
 	for body in bodies:
 		if body.get_node('MultiplayerSynchronizer').get_multiplayer_authority() == multiplayer.get_unique_id():
@@ -37,7 +37,7 @@ func check_overlap_authority(bodies: Array[Node2D]):
 
 	
 
-func interact():
+func interact() -> void:
 	if is_active == true:
 		moving_platform.get_node("AnimationPlayer").play("move_up")
 		get_node("AnimatedSprite2D").play("pull_lever");

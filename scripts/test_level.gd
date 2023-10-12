@@ -8,7 +8,7 @@ func _ready():
 		var current_player = player_scene.instantiate()
 		current_player.name = str(GameManager.connected_players[i].id)
 		current_player.hit.connect(GameManager.handle_player_hit);
-		add_child(current_player)
+		call_deferred('add_child',current_player)
 		for spawn in get_tree().get_nodes_in_group('PlayerSpawnPoint'):
 			if spawn.name == str(index):
 				current_player.global_position = spawn.global_position
@@ -20,7 +20,4 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$Interaction1.text = str(InteractionManager.interacting_items.keys())
-	if Input.is_action_pressed("reset"):
-		get_tree().change_scene_to_file("res://scenes/test_level.tscn");
-	pass
 

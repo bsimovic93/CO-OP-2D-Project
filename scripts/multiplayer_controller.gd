@@ -20,6 +20,7 @@ func _process(delta):
 @rpc("any_peer", "call_local")
 func start_level():
 	var scene = load("res://scenes/main.tscn").instantiate()
+	scene.set_name('Main')
 	get_tree().get_root().add_child(scene)
 	self.hide()
 
