@@ -57,7 +57,7 @@ script = ExtResource("1_8qp7s")
 player_scene = ExtResource("2_e1wdq")
 
 [node name="TileMap" type="TileMap" parent="." groups=["TilemapGroup"]]
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 tile_set = SubResource("TileSet_gftc8")
 format = 2
 layer_0/tile_data = PackedInt32Array(524293, 65536, 0, 524294, 131072, 0, 524290, 0, 0, 589826, 0, 2, 524291, 65536, 0, 589827, 65536, 2, 524292, 65536, 0, 589828, 65536, 2, 589829, 65536, 2, 589830, 131072, 2, 327690, 0, 0, 327691, 65536, 0, 327692, 65536, 0, 327693, 65536, 0, 393226, 0, 2, 393229, 65536, 2, 393227, 65536, 2, 393228, 65536, 2, 131082, 0, 2, 131083, 131072, 2, 131085, 0, 2, 131086, 131072, 2, 65546, 0, 0, 65547, 131072, 0, 65549, 0, 0, 65550, 131072, 0, 327694, 65536, 0, 393230, 65536, 2, 327695, 65536, 0, 393231, 65536, 2, 327696, 65536, 0, 393232, 65536, 2, 327698, 131072, 0, 393234, 131072, 1, 327697, 65536, 0, 393233, 65536, 2)
@@ -68,17 +68,17 @@ anchor_mode = 0
 [node name="MovingPlatform" parent="." instance=ExtResource("5_k176b")]
 
 [node name="Lever" parent="." node_paths=PackedStringArray("moving_platform") instance=ExtResource("3_vb48e")]
-position = Vector2(105, 240)
+position = Vector2(168, 368)
 moving_platform = NodePath("../MovingPlatform")
 lever_id = 420
 
 [node name="Button" parent="." node_paths=PackedStringArray("lightnig_gate") instance=ExtResource("6_srke2")]
-position = Vector2(357, 144)
+position = Vector2(535, 222)
 button_id = 69
 lightnig_gate = NodePath("../Shocker")
 
 [node name="Shocker" parent="." instance=ExtResource("7_0t6am")]
-position = Vector2(400, 50)
+position = Vector2(601, 77)
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 
@@ -86,7 +86,7 @@ position = Vector2(400, 50)
 position = Vector2(168, 232)
 
 [node name="1" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
-position = Vector2(408, 136)
+position = Vector2(764, 222)
 
 [node name="Interaction1" type="Label" parent="."]
 offset_right = 40.0
@@ -94,3 +94,4 @@ offset_bottom = 23.0
 text = "this is interaction 1"
 
 [node name="Exit" parent="." instance=ExtResource("8_47ssy")]
+position = Vector2(869, 222)

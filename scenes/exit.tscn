@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bolq60lmrqtgo"]
+[gd_scene load_steps=4 format=3 uid="uid://bolq60lmrqtgo"]
 
 [ext_resource type="Texture2D" uid="uid://f2jvxngadbnb" path="res://sprites/Sprite-door.png" id="1_sqwof"]
+[ext_resource type="Script" path="res://scenes/exit.gd" id="1_tfv5d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewmlo"]
 size = Vector2(30, 30)
 
 [node name="Exit" type="Node2D"]
 position = Vector2(551, 144)
+script = ExtResource("1_tfv5d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)

@@ -34,9 +34,10 @@ func _process(delta):
 	get_node('AnimatedSprite2D').set_frame(int(is_pushed))
 	if is_pushed == true:
 		lightnig_gate.hide()
+		lightnig_gate.get_node('Area2D/CollisionShape2D').set_disabled(true);
 	else:
 		lightnig_gate.show()
-	
+		lightnig_gate.get_node('Area2D/CollisionShape2D').set_disabled(false);
 	pass
 
 
