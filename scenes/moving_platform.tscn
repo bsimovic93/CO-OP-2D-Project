@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/moving_platform.gd" id="1_ox7f2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b45mj"]
-size = Vector2(64, 16)
+size = Vector2(96, 25)
 
 [sub_resource type="Animation" id="Animation_bb0s1"]
 resource_name = "move_up"
@@ -34,13 +34,12 @@ properties/0/sync = true
 properties/0/watch = false
 
 [node name="MovingPlatform" type="AnimatableBody2D"]
-position = Vector2(265, 265)
 script = ExtResource("1_ox7f2")
 platform_direction = 2
 travel_distance = 200
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 texture = ExtResource("1_4pjiw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

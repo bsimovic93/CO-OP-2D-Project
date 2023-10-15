@@ -3,6 +3,7 @@ extends Node
 @export var interacting_items = {};
 
 @export var can_move: bool = true;
+#TODO: maybe remove this when the game is fully multiplayer
 @export var is_focused: bool = false;
 signal  interaction_happened(value);
 

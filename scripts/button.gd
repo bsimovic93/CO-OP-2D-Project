@@ -16,7 +16,7 @@ func _process(delta):
 	if bodies.size() > 0:
 		# add this to the stuff
 		InteractionManager.add_interacting_item(button_id, get_node('.'))
-		if check_overlap_authority(bodies):
+		if check_overlap_authority(bodies) and InteractionManager.is_focused:
 			if Input.is_action_just_pressed("interact") and is_pushed != true:
 				InteractionManager.check_interaction({
 					'action': 'button-push',

@@ -19,7 +19,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyge1"]
-size = Vector2(32, 32)
+size = Vector2(48, 24)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_v5kuy"]
 properties/0/path = NodePath(".:is_pushed")
@@ -31,12 +31,13 @@ properties/0/watch = false
 script = ExtResource("1_s83u3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ibdty")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_xyge1")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

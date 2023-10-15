@@ -14,17 +14,15 @@ func _ready():
 func _process(delta):
 	pass
 	
+# this may be a huge problem down the line
+# if we constatnly just remove the lvl node and instatiate new ones 
+# we may overflow the memory
+# find a way to fix this
 func handle_player_hit(player_id):
 	print('game over:')
 	var main = get_tree().get_root().get_node('Main');
-	#FIXME: we may not need this
-	#read doc on remove child vs queue free
-	for child in main.get_children():
-		child.queue_free()
-	main.queue_free()
 	get_tree().get_root().call_deferred('remove_child',main)
-	
 	var level = load("res://scenes/main.tscn").instantiate();
-	
 	get_tree().get_root().call_deferred('add_child', level)
+	main.queue_free()
 	

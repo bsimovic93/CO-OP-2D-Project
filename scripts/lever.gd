@@ -19,7 +19,7 @@ func _process(delta):
 		# add this to the stuff
 		InteractionManager.add_interacting_item(lever_id, get_node('.'))
 		if check_overlap_authority(bodies):
-			if Input.is_action_just_pressed("interact"):
+			if Input.is_action_just_pressed("interact") and InteractionManager.is_focused:
 				InteractionManager.check_interaction({
 					'action': 'lever-pull',
 					'id': lever_id
