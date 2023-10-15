@@ -66,6 +66,8 @@ layer_0/tile_data = PackedInt32Array(524293, 65536, 0, 524294, 131072, 0, 524290
 anchor_mode = 0
 
 [node name="MovingPlatform" parent="." instance=ExtResource("5_k176b")]
+position = Vector2(400, 400)
+travel_distance = 160
 
 [node name="Lever" parent="." node_paths=PackedStringArray("moving_platform") instance=ExtResource("3_vb48e")]
 position = Vector2(168, 368)
@@ -83,7 +85,7 @@ position = Vector2(601, 77)
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="0" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
-position = Vector2(168, 232)
+position = Vector2(233, 368)
 
 [node name="1" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
 position = Vector2(764, 222)

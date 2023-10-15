@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdc2lgjopapjf"]
+[gd_scene load_steps=7 format=3 uid="uid://bdc2lgjopapjf"]
 
 [ext_resource type="Texture2D" uid="uid://qhco2or4igq6" path="res://sprites/Sprite-Plat.png" id="1_4pjiw"]
+[ext_resource type="Script" path="res://scenes/moving_platform.gd" id="1_ox7f2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b45mj"]
 size = Vector2(64, 16)
@@ -34,6 +35,9 @@ properties/0/watch = false
 
 [node name="MovingPlatform" type="AnimatableBody2D"]
 position = Vector2(265, 265)
+script = ExtResource("1_ox7f2")
+platform_direction = 2
+travel_distance = 200
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)

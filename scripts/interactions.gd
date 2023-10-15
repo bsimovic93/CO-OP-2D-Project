@@ -3,6 +3,7 @@ extends Node
 @export var interacting_items = {};
 
 @export var can_move: bool = true;
+@export var is_focused: bool = false;
 signal  interaction_happened(value);
 
 
@@ -67,3 +68,9 @@ func do_interaction(interaction):
 		
 func handle_interaction(interaction):
 	do_interaction.rpc(interaction)
+	
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_IN:
+		is_focused = true
+	elif what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_OUT:
+		is_focused = false

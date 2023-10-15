@@ -1,0 +1,3 @@
+Fix changing to next scene when the level ends
+Improve player movement
+implement more actions

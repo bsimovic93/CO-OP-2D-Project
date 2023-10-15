@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://f6bvkgfyd53a" path="res://sprites/Sprite-0001.png" id="1_p4o1x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nj16b"]
-size = Vector2(20, 30)
+size = Vector2(28, 45)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_r58fd"]
 properties/0/path = NodePath(".:position")
@@ -13,8 +13,8 @@ properties/0/sync = true
 properties/0/watch = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nsm6k"]
-radius = 8.0
-height = 38.0
+radius = 14.0
+height = 50.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_1i0h1")
@@ -22,12 +22,12 @@ script = ExtResource("1_1i0h1")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 1)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_nj16b")
 debug_color = Color(0.94902, 0.0470588, 0.556863, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 texture = ExtResource("1_p4o1x")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

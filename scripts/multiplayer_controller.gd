@@ -75,10 +75,3 @@ func _on_join_pressed():
 func _on_start_pressed():
 	start_level.rpc()
 	pass # Replace with function body.
-
-
-func _notification(what):
-	if what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_IN:
-		print("focus in")
-	elif what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_OUT:
-		print("focus out")
